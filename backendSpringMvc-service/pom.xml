@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>backendSpringMvc</groupId>
+    <artifactId>backendSpringMvc</artifactId>
+    <version>0.0.2</version>
+  </parent>
+  <groupId>backendSpringMvc-service</groupId>
+  <artifactId>backendSpringMvc-service</artifactId>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>backendSpringMvc-util</groupId>
+      <artifactId>backendSpringMvc-util</artifactId>
+      <version>0.0.2</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>backendSpringMvc-dao</groupId>
+      <artifactId>backendSpringMvc-dao</artifactId>
+      <version>0.0.2</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+</project>
