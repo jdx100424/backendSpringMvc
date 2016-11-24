@@ -13,7 +13,7 @@
 			class="right glyphicon glyphicon-chevron-up" aria-hidden="true"></i>
 	</a>
 		<ul class="sub-menu" style="display: none;">
-			<li><a href="${g.domain}/backend/posts/edit">echo测试</a></li>
+			<li><a href="${projectUrl}/echo/index">echo测试</a></li>
 		</ul></li>
 
 	<li><a class="nav-header" href="#"> <i

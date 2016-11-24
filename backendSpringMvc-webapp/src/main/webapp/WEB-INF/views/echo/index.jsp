@@ -1,80 +1,89 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE Html>
 <html>
-<head>
-<title>猫神</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords"
-	content="Ethos Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
-<script type="application/x-javascript">
-	
-	
-	
+ <head>
+  <jsp:include page="../common/bootstrap.jsp" flush="false" />
+ </head>
+ <body style="margin-top: 50px;">
+  <jsp:include page="../common/navbar.jsp" flush="false" />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2" id="sidebar" style="padding: 0;">
+        <jsp:include page="../common/sidebar.jsp" flush="false" />
+      </div>
+      <div class="col-sm-9 col-md-10">
+        <h3 class="page-header header">ECHO<small>echo测试</small></h3>
+        <div class="row" style="padding-top: 15px; ">
+          <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>mysqlSelectAndDubbo</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${echoHasResultSelect}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-
-
-</script>
-
-<script type="text/javascript"
-	src="http://127.0.0.1:8080/commonSpringMvc-webapp/js/baseJs/jquery-1.10.2.min.js"></script>
-<script type="text/javascript"
-	src="http://127.0.0.1:8080/commonSpringMvc-webapp/js/baseJs/json2.js"></script>
-<script type="text/javascript"
-	src="http://127.0.0.1:8080/commonSpringMvc-webapp/js/baseJs/ajaxupload.js"></script>
-<script type="text/javascript"
-	src="http://127.0.0.1:8080/commonSpringMvc-webapp/js/login/login.js"></script>
-
-<link href="http://127.0.0.1:8080/commonSpringMvc-webapp/css/style.css"
-	rel='stylesheet' type='text/css' />
-
-</head>
-<body>
-
-
-	<div class="main">
-		<div class="login">
-			<h1>Ethos Login Form</h1>
-			<div class="inset">
-
-				<table>
-					<tr>
-						<c:forEach items="${jdxList}" var="item">
-							<td>${item},</td>
-						</c:forEach>
-					</tr>
-					<tr>
-						<c:forEach items="${jdxMap}" var="item">
-							<td>${item.value},</td>
-						</c:forEach>
-					</tr>
-					<tr>
-						<c:forEach items="${jdxListObject}" var="item">
-							<td>${item.id},</td> 
-						</c:forEach>
-					</tr>
-					<tr>
-						<c:forEach items="${jdxMapObject}" var="item">
-							<td>${item.value.id},</td>
-							<td>${item.key},</td>
-						</c:forEach>
-					</tr>
-				</table>
-				<!--start-main-->
-
-			</div>
-		</div>
-		<!--//end-main-->
-	</div>
-	<!--start-copyright-->
-	<div class="copy-right">
-		<p>
-			&copy; 2015 Ethos Login Form. All Rights Reserved | Design by <a
-				href="http://www.moke8.com/" target="_blank">moke8</a>
-		</p>
-
-	</div>
-	<!--//end-copyright-->
-</body>
+          <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>mysqlInsert</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${echoHasResultInsert}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>redis</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${redisHasResult}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>kakfaSend</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${kakfaResult}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 
+          <div class="col-sm-6 col-md-6" style="float: right;">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>Disconf</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${disconfResult}</li>
+                </ul>
+              </div>
+            </div>
+          </div>-->
+          
+         <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading"><span class="icon glyphicon glyphicon-certificate"></span>Disconf</div>
+              <div class="panel-body">
+                <ul class="list-unstyled ul-group">
+                  <li>${disconfResult}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </body>
 </html>

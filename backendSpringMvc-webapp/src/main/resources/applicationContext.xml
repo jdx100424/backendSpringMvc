@@ -21,7 +21,7 @@
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean"
 	      destroy-method="destroy">
-	    <property name="scanPackage" value="com.maoshen.component.disconf"/>
+	    <property name="scanPackage" value="com.maoshen.component.disconf,com.maoshen.base.disconf"/>
 	</bean>
 	<bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond"
 	      init-method="init" destroy-method="destroy">
@@ -31,7 +31,7 @@
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
         <property name="locations">  
            <list>  
-              <value>classpath:backend.properties</value>   
+              <value>classpath:base.properties</value>   
             </list>  
         </property>  
     </bean>

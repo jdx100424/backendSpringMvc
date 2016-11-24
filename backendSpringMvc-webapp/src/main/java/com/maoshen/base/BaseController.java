@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +23,11 @@ import com.maoshen.response.ResponseResult;
 public abstract class BaseController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
+	public void setProjectUrl(Model model,String projectUrl){
+		LOGGER.info("projectUrl:{}",projectUrl);
+		model.addAttribute("projectUrl", projectUrl);
+	}
+	
 	@ExceptionHandler
 	@ResponseBody
 	protected void handleException(HttpServletRequest request, 
