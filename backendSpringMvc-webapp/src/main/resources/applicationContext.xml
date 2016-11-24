@@ -57,7 +57,6 @@
     <!-- sqldb,dubbo,redis,timeTask -->
     <import resource="sqlContext.xml" />
 	<import resource="dubboContext.xml" />
-	<import resource="redisContext.xml" />
 	<import resource="taskContext.xml" />
 	<import resource="kafkaContext.xml" />
 </beans>
