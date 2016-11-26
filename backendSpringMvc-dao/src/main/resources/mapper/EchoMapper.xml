@@ -6,6 +6,11 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 	</resultMap>
 
+	<sql id="common_sql">
+		id,
+		name
+	</sql>
+
 	<select id="selectById" resultMap="echoResult" parameterType="map">
 		select id,name from echo where
 		id=#{id,jdbcType=BIGINT};
@@ -15,5 +20,33 @@
 		useGeneratedKeys="true" keyProperty="id">
 		insert into echo (name) values (#{name,jdbcType=VARCHAR});
 	</insert>
+	<select id="select" parameterType="com.maoshen.echo.dto.EchoDto"
+		resultMap="echoResult">
+		select
+		<include refid="common_sql" />
+		from echo where 1=1
+		<if test="id != null and id !=0">
+			AND id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="name != null and name !=''">
+			AND
+			name=#{name,jdbcType=VARCHAR}
+		</if>
+		<if test="page != null and count !=null">
+			limit #{page},#{count}
+		</if>
+	</select>
+	
+	<select id="selectCount" parameterType="com.maoshen.echo.dto.EchoDto"
+		resultType="INT">
+		select count(1) from echo where 1=1
+		<if test="id != null and id !=0">
+			AND id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="name != null and name !=''">
+			AND
+			name=#{name,jdbcType=VARCHAR}
+		</if>
+	</select>
 </mapper>
 

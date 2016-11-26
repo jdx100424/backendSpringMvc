@@ -13,3 +13,4 @@
 <script src="${projectUrl}/resource/bootstrap-3.3.1/js/bootstrap.min.js"></script>
 <script src="${projectUrl}/resource/js/jquery.cookie.js"></script>
 <script src="${projectUrl}/resource/js/backend/zblog.admin.js"></script>
+<script src="${projectUrl}/resource/js/ajax/ajaxupload.js"></script>

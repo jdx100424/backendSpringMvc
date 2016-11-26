@@ -1,6 +1,7 @@
 package com.maoshen.echo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import com.maoshen.component.disconf.MysqlDisconf;
 import com.maoshen.component.kafka.BaseProducer;
 import com.maoshen.component.kafka.dto.MessageVo;
 import com.maoshen.echo.domain.Echo;
+import com.maoshen.echo.dto.EchoDto;
 import com.maoshen.echo.service.EchoService;
 import com.maoshen.response.ResponseResult;
 
@@ -123,6 +125,65 @@ public class EchoController extends BaseController {
 		return new ResponseResult<Map<String, Object>>(resultMap);
 	}
 
+	@RequestMapping(value = "listData", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public ResponseResult<Map<String, Object>> listData(HttpServletRequest request, Model model) {
+		Integer page = 1;
+		try{
+			page = Integer.parseInt(request.getParameter("page"));	
+			if(page < 1){
+				page = 1;
+			}
+		}catch(Exception e){
+			
+		}
+		
+		Integer count = EchoService.DEFAULT_COUNT;
+		try{
+			count = Integer.parseInt(request.getParameter("count"));	
+			if(count < 1){
+				count = EchoService.DEFAULT_COUNT;
+			}
+		}catch(Exception e){
+			
+		}
+		
+		EchoDto echoDto = new EchoDto();
+		echoDto.setCount(count);
+		echoDto.setPage(page);
+		List<Echo> resultList = echoService.getList(echoDto);
+		int total = echoService.getCount(echoDto);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("echoList", resultList);
+		resultMap.put("page", page);
+		resultMap.put("count", count);
+		resultMap.put("total", total);
+		return new ResponseResult<Map<String, Object>>(resultMap);
+	}
+	
+	@RequestMapping(value = "/listPage", method = { RequestMethod.POST, RequestMethod.GET })
+	public String listPage(HttpServletRequest request, Model model) {
+		setProjectUrl(model, baseDisconf.getProjectUrl());
+		
+		Integer page = 1;
+		try{
+			page = Integer.parseInt(request.getParameter("page"));	
+		}catch(Exception e){
+			
+		}
+		
+		Integer count = EchoService.DEFAULT_COUNT;
+		try{
+			count = Integer.parseInt(request.getParameter("count"));	
+		}catch(Exception e){
+			
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("count", count);
+		return "echo/list";
+	}
+	
 	/**
 	 * 
 	 * @Description: 登录首页入口
