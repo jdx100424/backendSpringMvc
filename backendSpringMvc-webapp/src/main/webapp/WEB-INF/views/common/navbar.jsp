@@ -2,16 +2,16 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fulid" style="padding-right: 15px;">
 		<div class="navbar-header">
-			<a class="navbar-brand" target="_blank" href="${g.domain}">maoshen</a>
+			<a class="navbar-brand" target="_blank" href="${projectUrl}">maoshen</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">快捷路径<span
 						class="caret" /></a>
 					<ul class="dropdown-menu">
-						<li><a href="${g.domain}/backend/posts/edit">XX</a></li>
-						<li><a href="${g.domain}/backend/links/edit">YY</a></li>
-						<li><a href="${g.domain}/backend/users/edit">ZZ</a></li>
+						<li><a href="${projectUrl}/backend/posts/edit">XX</a></li>
+						<li><a href="${projectUrl}/backend/links/edit">YY</a></li>
+						<li><a href="${projectUrl}/backend/users/edit">ZZ</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

@@ -5,7 +5,7 @@
 			class="left glyphicon glyphicon-home" aria-hidden="true"></i>系统设置 <i
 			class="right glyphicon glyphicon-chevron-down" aria-hidden="true"></i></a>
 		<ul class="sub-menu" style="display: block;">
-			<li><a href="${g.domain}/backend/index">首页</a></li>
+			<li><a href="${projectUrl}/backend/index">首页</a></li>
 		</ul></li>
 
 	<li><a class="nav-header" href="#"> <i
@@ -21,12 +21,12 @@
 			class="right glyphicon glyphicon-chevron-up" aria-hidden="true"></i>
 	</a>
 		<ul class="sub-menu" style="display: none;">
-			<li><a href="${g.domain}/backend/posts/edit">XX增加</a></li>
-			<li><a href="${g.domain}/backend/posts/edit">XX查询</a></li>
-			<li><a href="${g.domain}/backend/posts/edit">XX统计</a></li>
+			<li><a href="${projectUrl}/backend/posts/edit">XX增加</a></li>
+			<li><a href="${projectUrl}/backend/posts/edit">XX查询</a></li>
+			<li><a href="${projectUrl}/backend/posts/edit">XX统计</a></li>
 
 		</ul></li>
 
 </ul>
 <script type="text/javascript"
-	src="${g.domain}/resource/js/backend/sidebar.js"></script>
+	src="${projectUrl}/resource/js/backend/sidebar.js"></script>

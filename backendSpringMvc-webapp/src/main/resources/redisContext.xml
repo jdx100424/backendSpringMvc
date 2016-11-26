@@ -14,16 +14,34 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- jedis pool配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+
+	</bean>
+	<bean id="jedisFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="usePool" value="true" />
+		<property name="hostName" value="${redis.ip}" />
+		<property name="password" value="" />
+		<property name="port" value="${redis.port}" />
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+	</bean>
+	<!-- spring data redis -->
+	<bean id="jedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisFactory" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+	</bean>
 	
-	<!-- task -->
-	<task:annotation-driven /> <!-- 定时器开关-->  
-    <bean id="echoTask" class="com.maoshen.echo.task.EchoTask"></bean>  
-    <task:scheduled-tasks>  
-        <!--  
-            这里表示的是每隔60秒执行一次  
-        -->  
-        <task:scheduled ref="echoTask" method="doJob" cron="0 0/1 * * * ?" />  
-    </task:scheduled-tasks>  
+	<bean id="redisService" class="com.maoshen.component.redis.RedisService">
+		<property name="jedisTemplate" ref="jedisTemplate"/>
+	</bean>
 </beans>
 
 

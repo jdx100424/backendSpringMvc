@@ -32,6 +32,10 @@
         <property name="locations">  
            <list>  
               <value>classpath:base.properties</value>   
+              <value>classpath:kafka.properties</value>  
+              <value>classpath:mysql.properties</value>  
+              <value>classpath:redis.properties</value>  
+              <value>classpath:zookeeper.properties</value>  
             </list>  
         </property>  
     </bean>
@@ -57,8 +61,8 @@
     <!-- sqldb,dubbo,redis,timeTask -->
     <import resource="sqlContext.xml" />
 	<import resource="dubboContext.xml" />
-	<import resource="taskContext.xml" />
 	<import resource="kafkaContext.xml" />
+	<import resource="redisContext.xml" />
 </beans>
 
 
