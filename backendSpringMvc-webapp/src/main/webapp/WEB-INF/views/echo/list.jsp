@@ -10,17 +10,32 @@
 <script type="text/javascript">
 	$(function() {
 		var echoCount = document.getElementById("echoCount").value;
-		var echoPage = document.getElementById("echoPage").value;
-		selectEchoList(echoCount,echoPage);
+		selectEchoList(echoCount,1);
 	});
 
+	function selectEchoList() {
+		var echoCount = document.getElementById("echoCount").value;
+		selectEchoList(echoCount,1);
+	}
 	function selectEchoList(echoCount,echoPage) {
 		var projectUrl = document.getElementById("projectUrl").value;
-		var echoCount = document.getElementById("echoCount").value;
+		var echoId = document.getElementById("echoId").value;
+		var echoName = document.getElementById("echoName").value;
 		
 		var effectRow = new Object();
 		effectRow["count"] = echoCount;
 		effectRow["page"] = echoPage;
+		effectRow["id"] = echoId;
+		effectRow["name"] = echoName;
+		
+		//清空内容
+		var echoListCount = document.getElementById("echoListCount");
+		var echoListCountSqu = document.getElementById("echoListCountSqu");
+		var echoList = document.getElementById("echoList");
+		echoListCount.innerHTML = "";
+		echoListCountSqu.innerHTML = "";
+		echoList.innerHTML = "";
+		
 		$
 				.post(
 						projectUrl + "/echo/listData",
@@ -59,8 +74,10 @@
 											showButtonStr = showButtonStr + "<li><span onClick='" + middleUrl + "' aria-hidden='true'>" + (json.data.page - 2 + j) + "</span></li>";
 										}
 									}else{
-										var middleUrl = "selectEchoList(" + echoCount + "," + (1 + j ) + ")";
-										showButtonStr = showButtonStr + "<li><span onClick='" + middleUrl + "' aria-hidden='true'>" + (1 + j) + "</span></li>";	
+										if(j < pages){
+											var middleUrl = "selectEchoList(" + echoCount + "," + (1 + j ) + ")";
+											showButtonStr = showButtonStr + "<li><span onClick='" + middleUrl + "' aria-hidden='true'>" + (1 + j) + "</span></li>";	
+										}
 									}
 								}
 							    if(json.data.page != pages){
@@ -83,7 +100,6 @@
 <body style="margin-top: 50px;">
 	<input type='hidden' value="${projectUrl}" id='projectUrl' />
 	<input type='hidden' value="${count}" id='echoCount' />
-	<input type='hidden' value="${page}" id='echoPage' />
 	<jsp:include page="../common/navbar.jsp" flush="false" />
 	<div class="container-fluid">
 		<div class="row">
@@ -99,6 +115,23 @@
 					<div class="panel-heading">
 						<span class="icon glyphicon glyphicon-list"></span>列表
 					</div>
+					<form class="navbar-form navbar-left">
+						<table>
+							<tr>
+								<td class="navbar-form navbar-left">
+									id：<input type="text" id='echoId' autocomplete="off" placeholder="请输入id" class="form-control" />
+								</td>
+								<td class="navbar-form navbar-left">
+									名称：<input type="text" id='echoName' autocomplete="off" placeholder="请输入名称" class="form-control" />
+								</td>
+								<td class="navbar-form navbar-left">
+									<span onclick='selectEchoList()'>
+										<input type='button' class="btn btn-info" style="margin-left: 40px;" value='查询'></input>
+									</span>
+								</td>
+							</tr>	
+						</table>
+					</form> 
 					<div class="panel-body">
 						<table id="post-table" class="table table-striped list-table">
 							<thead>
@@ -118,10 +151,6 @@
 							<div class="col-sm-6 col-md-6">
 								<div id="pager">
 									<ul class="pagination" id="echoListCountSqu">
-										<!--  
-										<li><a href="${pageUrl}"><span aria-hidden="true">&laquo;</span></a></li>
-										<li><a href="${pageUrl}"><span aria-hidden="true">1</span></a></li>
-										<li><a href="${pageUrl}"><span aria-hidden="true">&raquo;</span></a></li>-->
 									</ul>
 								</div>
 							</div>

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -151,6 +152,17 @@ public class EchoController extends BaseController {
 		EchoDto echoDto = new EchoDto();
 		echoDto.setCount(count);
 		echoDto.setPage(page);
+		String name = request.getParameter("name");
+		if(StringUtils.isNotBlank(name) && "".equals(name.trim())==false){
+			echoDto.setName(name);
+		}
+		try{
+			int id = Integer.parseInt(request.getParameter("id"));	
+			echoDto.setId(id);
+		}catch(Exception e){
+			
+		}
+		
 		List<Echo> resultList = echoService.getList(echoDto);
 		int total = echoService.getCount(echoDto);
 		
@@ -165,22 +177,7 @@ public class EchoController extends BaseController {
 	@RequestMapping(value = "/listPage", method = { RequestMethod.POST, RequestMethod.GET })
 	public String listPage(HttpServletRequest request, Model model) {
 		setProjectUrl(model, baseDisconf.getProjectUrl());
-		
-		Integer page = 1;
-		try{
-			page = Integer.parseInt(request.getParameter("page"));	
-		}catch(Exception e){
-			
-		}
-		
-		Integer count = EchoService.DEFAULT_COUNT;
-		try{
-			count = Integer.parseInt(request.getParameter("count"));	
-		}catch(Exception e){
-			
-		}
-		model.addAttribute("page", page);
-		model.addAttribute("count", count);
+		model.addAttribute("count", EchoService.DEFAULT_COUNT);
 		return "echo/list";
 	}
 	

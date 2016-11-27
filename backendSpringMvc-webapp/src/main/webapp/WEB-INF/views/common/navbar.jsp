@@ -6,8 +6,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">快捷路径<span
-						class="caret" /></a>
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">快捷路径<span class="caret" /></a>
 					<ul class="dropdown-menu">
 						<li><a href="${projectUrl}/backend/posts/edit">XX</a></li>
 						<li><a href="${projectUrl}/backend/links/edit">YY</a></li>
