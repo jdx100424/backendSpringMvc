@@ -10,7 +10,7 @@
 
 	<li><a class="nav-header" href="#"> <i
 			class="left glyphicon glyphicon-send" aria-hidden="true"></i>echo <i
-			class="right glyphicon glyphicon-chevron-up" aria-hidden="true"></i>
+			class="right glyphicon glyphicon-chevron-down" aria-hidden="true"></i>
 	</a>
 		<ul class="sub-menu" style="display: block;">
 			<li><a href="${projectUrl}/echo/index">echo测试</a></li>
