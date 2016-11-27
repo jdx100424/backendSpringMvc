@@ -16,6 +16,7 @@
 
 	function selectEchoList(echoCount,echoPage) {
 		var projectUrl = document.getElementById("projectUrl").value;
+		var echoCount = document.getElementById("echoCount").value;
 		
 		var effectRow = new Object();
 		effectRow["count"] = echoCount;
@@ -47,18 +48,25 @@
 							    //分页按钮
 							    var showButtonCount = 5;
 							    var showButtonStr = "";
-							    showButtonStr = showButtonStr + "<li><a href='${pageUrl}'><span aria-hidden='true'>&laquo;</span></a></li>";
-	
+							    if(json.data.page != 1){
+							    	var leftUrl = "selectEchoList(" + echoCount + "," + (json.data.page -1 ) + ")";
+							    	showButtonStr = showButtonStr + "<li><span onClick='" + leftUrl + "' aria-hidden='true'>&laquo;</span></li>";
+							    }
 							    for(var j = 0;j < showButtonCount;j++){
 									if(json.data.page > 3){
 										if(json.data.page - 2 + j <= pages){
-											showButtonStr = showButtonStr + "<li><a href='${pageUrl}'><span aria-hidden='true'>" + (json.data.page - 2 + j) + "</span></a></li>";
+									    	var middleUrl = "selectEchoList(" + echoCount + "," + (json.data.page - 2 + j ) + ")";
+											showButtonStr = showButtonStr + "<li><span onClick='" + middleUrl + "' aria-hidden='true'>" + (json.data.page - 2 + j) + "</span></li>";
 										}
 									}else{
-										showButtonStr = showButtonStr + "<li><a href='${pageUrl}'><span aria-hidden='true'>" + (1 + j) + "</span></a></li>";	
+										var middleUrl = "selectEchoList(" + echoCount + "," + (1 + j ) + ")";
+										showButtonStr = showButtonStr + "<li><span onClick='" + middleUrl + "' aria-hidden='true'>" + (1 + j) + "</span></li>";	
 									}
 								}
-							    showButtonStr = showButtonStr + "<li><a href='${pageUrl}'><span aria-hidden='true'>&raquo;</span></a></li>"
+							    if(json.data.page != pages){
+							    	var rightUrl = "selectEchoList(" + echoCount + "," + (json.data.page + 1 ) + ")";
+							    	showButtonStr = showButtonStr + "<li><span onClick='" + rightUrl + "' aria-hidden='true'>&raquo;</span></li>"
+							    }
 							    var echoListCountSqu = document.getElementById("echoListCountSqu");
 							    echoListCountSqu.innerHTML = showButtonStr;
 							} else {
