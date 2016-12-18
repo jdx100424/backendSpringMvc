@@ -2,7 +2,7 @@ package com.maoshen.echo.dto;
 
 import java.io.Serializable;
 
-import com.maoshen.component.dto.BaseDto;
+import com.maoshen.component.base.dto.BaseDto;
 
 @SuppressWarnings("serial")
 public class EchoDto extends BaseDto implements Serializable {

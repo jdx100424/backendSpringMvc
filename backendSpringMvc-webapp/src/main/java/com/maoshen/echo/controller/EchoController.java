@@ -8,7 +8,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.maoshen.base.BaseController;
 import com.maoshen.base.disconf.BaseDisconf;
+import com.maoshen.component.base.dto.ResponseResultDto;
+import com.maoshen.component.controller.BaseController;
 import com.maoshen.component.disconf.KafkaDisconf;
 import com.maoshen.component.disconf.MysqlDisconf;
 import com.maoshen.component.kafka.BaseProducer;
@@ -26,7 +28,6 @@ import com.maoshen.component.kafka.dto.MessageVo;
 import com.maoshen.echo.domain.Echo;
 import com.maoshen.echo.dto.EchoDto;
 import com.maoshen.echo.service.EchoService;
-import com.maoshen.response.ResponseResult;
 
 /**
  * 
@@ -39,7 +40,7 @@ import com.maoshen.response.ResponseResult;
 @Controller
 @RequestMapping("/echo")
 public class EchoController extends BaseController {
-	private static final Logger LOGGER = Logger.getLogger(EchoController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EchoController.class);
 
 	@Autowired
 	@Qualifier("echoServiceImpl")
@@ -67,7 +68,7 @@ public class EchoController extends BaseController {
 	 */
 	@RequestMapping(value = "check", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public ResponseResult<Map<String, Object>> echo(HttpServletRequest request, Model model, String src) {
+	public ResponseResultDto<Map<String, Object>> echo(HttpServletRequest request, Model model, String src) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			boolean resultSelectOne = echoService.checkEchoIsExist(1L);
@@ -123,12 +124,12 @@ public class EchoController extends BaseController {
 			resultMap.put("disconfResult", e.getMessage());
 		}
 
-		return new ResponseResult<Map<String, Object>>(resultMap);
+		return new ResponseResultDto<Map<String, Object>>(resultMap);
 	}
 
 	@RequestMapping(value = "listData", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public ResponseResult<Map<String, Object>> listData(HttpServletRequest request, Model model) {
+	public ResponseResultDto<Map<String, Object>> listData(HttpServletRequest request, Model model) {
 		Integer page = 1;
 		try{
 			page = Integer.parseInt(request.getParameter("page"));	
@@ -171,7 +172,7 @@ public class EchoController extends BaseController {
 		resultMap.put("page", page);
 		resultMap.put("count", count);
 		resultMap.put("total", total);
-		return new ResponseResult<Map<String, Object>>(resultMap);
+		return new ResponseResultDto<Map<String, Object>>(resultMap);
 	}
 	
 	@RequestMapping(value = "/listPage", method = { RequestMethod.POST, RequestMethod.GET })
@@ -249,5 +250,15 @@ public class EchoController extends BaseController {
 			model.addAttribute("disconfResult", e.getMessage());
 		}
 		return "echo/index";
+	}
+	
+	public void setProjectUrl(Model model,String projectUrl){
+		LOGGER.info("projectUrl:{}",projectUrl);
+		model.addAttribute("projectUrl", projectUrl);
+	}
+
+	@Override
+	public String getServiceName() {
+		return "EchoController";
 	}
 }

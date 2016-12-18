@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.maoshen.base.BaseController;
+import com.maoshen.component.controller.BaseController;
 
 @Controller
 @RequestMapping("")
@@ -20,5 +20,10 @@ public class LoginController extends BaseController {
 	public String login(String msg, Model model) {
 		LOGGER.info("backend login get,date is:{}", new Date());
 		return "login";
+	}
+
+	@Override
+	public String getServiceName() {
+		return "LoginController";
 	}
 }

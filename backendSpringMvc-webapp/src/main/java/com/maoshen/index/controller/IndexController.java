@@ -10,9 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.maoshen.base.BaseController;
 import com.maoshen.base.disconf.BaseDisconf;
-import com.maoshen.component.other.ResourceUtils;
+import com.maoshen.component.controller.BaseController;
 
 @Controller
 @RequestMapping("")
@@ -26,5 +25,15 @@ public class IndexController extends BaseController {
 		setProjectUrl(model, baseDisconf.getProjectUrl());
 		LOGGER.info("backend index get,date is:{}", new Date());
 		return "index";
+	}
+	
+	@Override
+	public String getServiceName() {
+		return "IndexController";
+	}
+	
+	public void setProjectUrl(Model model,String projectUrl){
+		LOGGER.info("projectUrl:{}",projectUrl);
+		model.addAttribute("projectUrl", projectUrl);
 	}
 }
