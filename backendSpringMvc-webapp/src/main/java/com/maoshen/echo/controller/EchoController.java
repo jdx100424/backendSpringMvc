@@ -24,6 +24,7 @@ import com.maoshen.component.controller.BaseController;
 import com.maoshen.component.disconf.KafkaDisconf;
 import com.maoshen.component.disconf.MysqlDisconf;
 import com.maoshen.component.kafka.BaseProducer;
+import com.maoshen.component.kafka.dto.MessageDto;
 import com.maoshen.component.kafka.dto.MessageVo;
 import com.maoshen.echo.domain.Echo;
 import com.maoshen.echo.dto.EchoDto;
@@ -105,7 +106,8 @@ public class EchoController extends BaseController {
 		try {
 			Map<String, Object> sendMap = new HashMap<String, Object>();
 			sendMap.put("jdx", UUID.randomUUID().toString());
-			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), sendMap);
+			MessageDto dto = new MessageDto(sendMap,UUID.randomUUID().toString());
+			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), dto);
 			resultMap.put("kakfaResult", true);
 		} catch (Exception e) {
 			LOGGER.error("kakfaService error:", e);
@@ -231,7 +233,8 @@ public class EchoController extends BaseController {
 		try {
 			Map<String, Object> sendMap = new HashMap<String, Object>();
 			sendMap.put("jdx", UUID.randomUUID().toString());
-			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), sendMap);
+			MessageDto dto = new MessageDto(sendMap,UUID.randomUUID().toString());
+			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), dto);
 			model.addAttribute("kakfaResult", true);
 		} catch (Exception e) {
 			LOGGER.error("kakfaService error:", e);
