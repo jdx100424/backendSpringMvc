@@ -106,7 +106,7 @@ public class EchoController extends BaseController {
 		try {
 			Map<String, Object> sendMap = new HashMap<String, Object>();
 			sendMap.put("jdx", UUID.randomUUID().toString());
-			MessageDto dto = new MessageDto(sendMap,UUID.randomUUID().toString());
+			MessageDto dto = new MessageDto(sendMap);
 			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), dto);
 			resultMap.put("kakfaResult", true);
 		} catch (Exception e) {
@@ -233,7 +233,7 @@ public class EchoController extends BaseController {
 		try {
 			Map<String, Object> sendMap = new HashMap<String, Object>();
 			sendMap.put("jdx", UUID.randomUUID().toString());
-			MessageDto dto = new MessageDto(sendMap,UUID.randomUUID().toString());
+			MessageDto dto = new MessageDto(sendMap);
 			baseProducer.send(MessageVo.ECHO_MESSAGE.getTopicName(), dto);
 			model.addAttribute("kakfaResult", true);
 		} catch (Exception e) {
